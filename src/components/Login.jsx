@@ -16,8 +16,10 @@ export default function Login() {
                 <FaSpotify
                     className={styles.loginItem}
                     style={{
-                        color: "green",
-                        backgroundColor: "black",
+                        color: "#1DB954",
+                        position: "absolute",
+                        right: "0",
+                        fontSize: "3rem",
                     }}
                 />
                 {/* <Link to={AUTH_URL}>Login</Link> */}
