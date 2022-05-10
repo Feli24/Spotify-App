@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Login from "./components/Login";
-import Search from "./components/Search";
+import LandingPage from "./pages/LandingPage";
+import ArtistSearchPage from "./pages/ArtistSearchPage";
 // import Artist from "./components/Artist";
 // import Album from "./components/Album";
 
@@ -9,10 +8,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/search" element={<Search />} />
-                {/* <Route path="artist" element={<Artist />} />
-                <Route path="albums" element={<Album />} /> */}
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/search" element={<ArtistSearchPage />} />
             </Routes>
         </Router>
     );
