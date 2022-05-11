@@ -1,0 +1,7 @@
+.topBar {
+    /* position: fixed; */
+    border: 1px solid #d3d3d3;
+    background-color: #bebebe;
+    padding-left: 5%;
+    width: 100%;
+}
