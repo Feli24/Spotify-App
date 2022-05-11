@@ -1,9 +1,10 @@
 .loginPage {
     font-size: 1.75rem;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .loginContainer {

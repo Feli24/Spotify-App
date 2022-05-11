@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Search from "../components/Search";
 import Artists from "../components/Artist";
+import styles from "../styles/Artist.module.css";
 
 const SEARCH_URL = "https://api.spotify.com/v1/search";
 
@@ -14,9 +15,9 @@ export default function ArtistSearchPage() {
     const splitLocation = location.hash.split("&");
     const token = splitLocation[0].slice(14);
 
-    const submitArtist = (name) => {
+    const submitArtist = async (name) => {
         console.log("Submitted, " + name + " with token: " + token);
-        const { data } = axios.get(SEARCH_URL, {
+        const { data } = await axios.get(SEARCH_URL, {
             headers: {
                 Authorization: "Bearer " + token,
             },
@@ -25,8 +26,25 @@ export default function ArtistSearchPage() {
                 type: "artist",
             },
         });
-        setArtists(data);
+        setArtists(data.artists.items);
+        console.log(data);
+        console.log(data.artists.items[0].images[0].url);
     };
 
-    return <Search submitArtist={submitArtist} />;
+    const displayArtists = () => {
+        return artists
+            ? artists.map((artist) => <Artists info={artist} />)
+            : null;
+    };
+
+    return (
+        <div>
+            <Search submitArtist={submitArtist} />
+            {artists ? (
+                <div className={styles.artistsContainer}>
+                    {displayArtists()}
+                </div>
+            ) : null}
+        </div>
+    );
 }

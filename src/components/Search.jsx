@@ -14,8 +14,10 @@ export default function Search(props) {
         props.submitArtist(name);
     };
 
+    const containerClass = name ? styles.artistsPage : styles.searchPage;
+
     return (
-        <div className={styles.searchPage}>
+        <div className={containerClass}>
             <form className={styles.searchContainer} onSubmit={onSubmitHandler}>
                 <input
                     className={styles.searchItem}
