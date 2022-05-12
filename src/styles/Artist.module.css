@@ -1,9 +1,15 @@
+.artistSearchPageContainer {
+    flex-grow: 1;
+}
+
 .artistsContainer {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
-    grid-auto-rows: repeat(4, 200px);
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 300px);
+    /* grid-template-rows: repeat(4, 100px); */
+    grid-gap: 40px;
     padding: 3rem;
-    background-color: green;
+    /* background-color: green; */
 }
 
 .artistContainer {
@@ -13,12 +19,12 @@
     flex-wrap: wrap;
     border: 2px solid black;
     transition: transform 0.5s ease;
-    background-color: blue;
+    /* background-color: blue; */
 }
 
 .artistContainer:hover {
     background-color: cadetblue;
-    transform: scale(1.2);
+    transform: scale(1.1);
     cursor: pointer;
 }
 

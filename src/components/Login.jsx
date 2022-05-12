@@ -19,7 +19,7 @@ export default function Login() {
                         color: "#1DB954",
                         position: "absolute",
                         right: "0",
-                        fontSize: "3rem",
+                        fontSize: "4rem",
                     }}
                 />
                 {/* <Link to={AUTH_URL}>Login</Link> */}
@@ -28,4 +28,6 @@ export default function Login() {
     );
 }
 
+// // const styledLoginPage = styled.div`
+// `
 // css in jsx

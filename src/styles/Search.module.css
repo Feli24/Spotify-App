@@ -1,8 +1,9 @@
 .searchPage {
-    min-height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-top: 350px; */
 }
 
 .artistsPage {
@@ -41,6 +42,7 @@
 .searchIcon {
     padding-top: 9px;
     cursor: pointer;
+    font-size: 3rem;
 }
 
 /* clears the 'X' from Internet Explorer */

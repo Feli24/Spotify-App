@@ -3,26 +3,35 @@ import styles from "../styles/Search.module.css";
 import { BiSearchAlt2 } from "react-icons/bi";
 
 export default function Search(props) {
-    const [name, setName] = useState("");
+    // const [name, setName] = useState("");
+    const [search, setSearch] = useState(false);
 
     const onChangeHandler = (e) => {
-        setName(e.target.value);
-    };
-
-    const onSubmitHandler = (e) => {
         e.preventDefault(); // prevent reload of page
+        const name = e.target.value;
+
+        if (name.length > 0) {
+            setSearch(true);
+        } else {
+            setSearch(false);
+        }
         props.submitArtist(name);
     };
 
-    const containerClass = name ? styles.artistsPage : styles.searchPage;
+    // const onSubmitHandler = (e) => {
+    //     e.preventDefault(); // prevent reload of page
+    //     setSearch(true);
+    //     props.submitArtist(name);
+    // };
+
+    const containerClass = search ? styles.artistsPage : styles.searchPage;
 
     return (
         <div className={containerClass}>
-            <form className={styles.searchContainer} onSubmit={onSubmitHandler}>
+            <form className={styles.searchContainer} onSubmit={onChangeHandler}>
                 <input
                     className={styles.searchItem}
                     type="search"
-                    value={name}
                     placeholder="Search for an artist..."
                     onChange={onChangeHandler}
                 ></input>

@@ -17,28 +17,29 @@ export default function ArtistSearchPage() {
 
     const submitArtist = async (name) => {
         console.log("Submitted, " + name + " with token: " + token);
-        const { data } = await axios.get(SEARCH_URL, {
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-            params: {
-                q: name,
-                type: "artist",
-            },
-        });
-        setArtists(data.artists.items);
-        console.log(data);
-        console.log(data.artists.items[0].images[0].url);
+
+        if (name.length > 0) {
+            const { data } = await axios.get(SEARCH_URL, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+                params: {
+                    q: name,
+                    type: "artist",
+                },
+            });
+            setArtists(data.artists.items);
+        } else {
+            setArtists(null);
+        }
     };
 
     const displayArtists = () => {
-        return artists
-            ? artists.map((artist) => <Artists info={artist} />)
-            : null;
+        return artists.map((artist) => <Artists info={artist} />);
     };
 
     return (
-        <div>
+        <div className={styles.artistSearchPageContainer}>
             <Search submitArtist={submitArtist} />
             {artists ? (
                 <div className={styles.artistsContainer}>
