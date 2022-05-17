@@ -1,44 +1,125 @@
 .artistSearchPageContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     flex-grow: 1;
+    /* background-color: aquamarine; */
 }
 
 .artistsContainer {
+    width: 100%;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 300px);
-    /* grid-template-rows: repeat(4, 100px); */
     grid-gap: 40px;
     padding: 3rem;
-    /* background-color: green; */
 }
 
 .artistContainer {
+    height: 25rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    border: 2px solid black;
+    flex-direction: column;
+    border: 2px solid grey;
+    border-radius: 4px;
     transition: transform 0.5s ease;
-    /* background-color: blue; */
+    background-color: #ffffff;
 }
 
 .artistContainer:hover {
-    background-color: cadetblue;
+    background-color: rgba(29, 185, 84, 0.5);
     transform: scale(1.1);
     cursor: pointer;
 }
 
 .artistImg {
     width: 100%;
+    height: 15rem;
     text-align: center;
-    border-bottom: 2px solid black;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+}
+
+.artistInfo {
+    /* height: 10rem; */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 2px solid black;
+    padding: 1rem;
 }
 
 .artistItem {
-    width: 100%;
-    padding: 0.5rem;
+    /* width: 100%;
+    color: black; */
+}
+
+.artistNameFollowersContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex;
 }
 
 .artistName {
     font-size: 20px;
+}
+
+.artistFollowers {
+    color: #808080;
+    padding-top: 0.4rem;
+    font-size: 15px;
+}
+
+.artistPopularity {
+    padding-top: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.star {
+    position: relative;
+
+    display: inline-block;
+    width: 0;
+    height: 0;
+
+    margin-left: 0.9em;
+    margin-right: 0.9em;
+    margin-bottom: 1.2em;
+
+    border-right: 0.3em solid transparent;
+    border-bottom: 0.7em solid #fc0;
+    border-left: 0.3em solid transparent;
+
+    /* Controlls the size of the stars. */
+    font-size: 12px;
+}
+
+.star:before,
+.star:after {
+    content: "";
+
+    display: block;
+    width: 0;
+    height: 0;
+
+    position: absolute;
+    top: 0.6em;
+    left: -1em;
+
+    border-right: 1em solid transparent;
+    border-bottom: 0.7em solid #fc0;
+    border-left: 1em solid transparent;
+
+    transform: rotate(-35deg);
+}
+
+.star:after {
+    transform: rotate(35deg);
 }

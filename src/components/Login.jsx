@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import styles from "../styles/Login.module.css";
 import { FaSpotify } from "react-icons/fa";
 
@@ -22,7 +22,6 @@ export default function Login() {
                         fontSize: "4rem",
                     }}
                 />
-                {/* <Link to={AUTH_URL}>Login</Link> */}
             </div>
         </div>
     );

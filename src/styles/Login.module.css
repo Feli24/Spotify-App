@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 350px;
+    flex-grow: 1;
+    /* margin-top: 350px; */
 }
 
 .loginContainer {
@@ -16,6 +17,11 @@
     border: 2px solid #d3d3d3;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    background-color: #ffffff;
+}
+
+.loginContainer:hover {
+    background-color: grey;
 }
 
 .loginItem {

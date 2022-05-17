@@ -1,19 +1,17 @@
-.searchPage {
-    height: 100%;
+.searchContainer {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-top: 350px; */
+    flex-grow: 1;
 }
 
-.artistsPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.artistSearch {
+    align-self: flex-start;
     margin-top: 20px;
 }
 
-.searchContainer {
+.searchForm {
     position: relative;
     display: flex;
     justify-content: center;
@@ -22,6 +20,7 @@
     border: 2px solid #d3d3d3;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    background-color: #ffffff;
 }
 
 .searchItem {

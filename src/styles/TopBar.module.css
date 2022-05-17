@@ -1,7 +1,12 @@
 .topBar {
     /* position: fixed; */
     border: 1px solid #d3d3d3;
-    background-color: #bebebe;
+    background-color: #1db954;
     padding-left: 5%;
     width: 100%;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: normal;
 }

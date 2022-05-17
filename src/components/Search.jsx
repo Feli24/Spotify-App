@@ -1,37 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styles from "../styles/Search.module.css";
 import { BiSearchAlt2 } from "react-icons/bi";
+import SearchContext from "../store/search-context";
 
 export default function Search(props) {
-    // const [name, setName] = useState("");
-    const [search, setSearch] = useState(false);
+    const context = useContext(SearchContext);
 
     const onChangeHandler = (e) => {
         e.preventDefault(); // prevent reload of page
         const name = e.target.value;
+        context.changeSearchValue(name);
 
-        if (name.length > 0) {
-            setSearch(true);
-        } else {
-            setSearch(false);
-        }
-        props.submitArtist(name);
+        props.searchArtist(name);
     };
 
-    // const onSubmitHandler = (e) => {
-    //     e.preventDefault(); // prevent reload of page
-    //     setSearch(true);
-    //     props.submitArtist(name);
-    // };
-
-    const containerClass = search ? styles.artistsPage : styles.searchPage;
+    const containerClass = context.searchValue ? styles.artistSearch : null;
 
     return (
-        <div className={containerClass}>
-            <form className={styles.searchContainer} onSubmit={onChangeHandler}>
+        <div className={`${styles.searchContainer} ${containerClass}`}>
+            <form className={styles.searchForm}>
                 <input
                     className={styles.searchItem}
                     type="search"
+                    value={context.searchValue}
                     placeholder="Search for an artist..."
                     onChange={onChangeHandler}
                 ></input>
