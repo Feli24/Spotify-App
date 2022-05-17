@@ -10,7 +10,6 @@ export default function Search(props) {
         e.preventDefault(); // prevent reload of page
         const name = e.target.value;
         context.changeSearchValue(name);
-
         props.searchArtist(name);
     };
 

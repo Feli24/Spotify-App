@@ -36,6 +36,8 @@ export default function ArtistSearchPage() {
             }
         },
         [context.token]
+
+        // navigate(`/search?name=${name}#${token}`)
     );
 
     useEffect(() => {
