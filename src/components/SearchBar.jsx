@@ -3,7 +3,7 @@ import styles from "../styles/Search.module.css";
 import { BiSearchAlt2 } from "react-icons/bi";
 import SearchContext from "../store/search-context";
 
-export default function Search(props) {
+export default function SearchBar(props) {
     const context = useContext(SearchContext);
 
     const onChangeHandler = (e) => {

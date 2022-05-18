@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import Search from "../components/Search";
-import Artists from "../components/Artist";
+import Search from "../components/SearchBar";
+import Artists from "../components/ArtistCard";
 import styles from "../styles/Artist.module.css";
 import SearchContext from "../store/search-context";
 
@@ -12,11 +12,6 @@ export default function ArtistSearchPage() {
     const [artists, setArtists] = useState(null);
     const location = useLocation();
     const context = useContext(SearchContext);
-
-    // const navigate = useNavigate();
-    // window.onpopstate = () => {
-    //     navigate("/search");
-    // };
 
     const searchArtist = useCallback(
         async (name) => {
@@ -45,7 +40,6 @@ export default function ArtistSearchPage() {
         const token = locationHash[0].slice(14);
         // const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
         context.changeToken(token);
-
         if (context.searchValue !== "") {
             searchArtist(context.searchValue);
         }

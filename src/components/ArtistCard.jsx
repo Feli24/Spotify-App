@@ -4,16 +4,15 @@ import { Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import SearchContext from "../store/search-context";
 
-export default function Artist(props) {
+export default function ArtistCard({ info }) {
     const context = useContext(SearchContext);
     // const navigate = useNavigate();
-    const data = props.info;
     const token = context.token;
-    const id = data.id;
-    const name = data.name;
-    const image = data.images;
-    const followers = data.followers.total.toLocaleString("en-US");
-    const popularity = (data.popularity * 5) / 100;
+    const id = info.id;
+    const name = info.name;
+    const image = info.images;
+    const followers = info.followers.total.toLocaleString("en-US");
+    const popularity = (info.popularity * 5) / 100;
 
     // const onClickHandler = (e) => {
     //     e.preventDefault();

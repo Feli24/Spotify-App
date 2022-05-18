@@ -1,14 +1,13 @@
 import React from "react";
 import styles from "../styles/Album.module.css";
 
-export default function Album(props) {
-    const data = props.info;
-    const image = data.images;
-    const name = data.name;
-    const artists = data.artists.map((artist) => artist.name);
-    const date = data.release_date;
-    const tracks = data.total_tracks;
-    const external_url = data.external_urls.spotify;
+export default function AlbumCard({ info }) {
+    const image = info.images;
+    const name = info.name;
+    const artists = info.artists.map((artist) => artist.name);
+    const date = info.release_date;
+    const tracks = info.total_tracks;
+    const external_url = info.external_urls.spotify;
     return (
         <div className={styles.albumContainer}>
             <div className={styles.albumImg}>

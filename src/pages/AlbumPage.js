@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Albums from "../components/Album";
+import Albums from "../components/AlbumCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/Album.module.css";
