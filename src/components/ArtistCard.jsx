@@ -3,15 +3,14 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Rating } from "@mui/material";
 // import styles from "../styles/Artist.module.css";
 
-export default function ArtistCard(props) {
+export default function ArtistCard({ info, searchValue }) {
     const [, setSearchParams] = useSearchParams();
-    const info = props.info;
+
     const followers = info.followers.total.toLocaleString("en-US");
     const popularity = (info.popularity * 5) / 100;
 
     const onClickHandler = (e) => {
-        console.log("Clicked artist");
-        setSearchParams(`searchValue=${props.searchValue}`);
+        setSearchParams(`searchValue=${searchValue}`);
     };
 
     return (

@@ -1,22 +1,15 @@
-// import React, { useContext } from "react";
-import { useSearchParams } from "react-router-dom";
-// import styles from "../styles/Search.module.css";
+import React from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
-// import SearchContext from "../store/search-context";
 
 export default function SearchBar(props) {
-    // const context = useContext(SearchContext);
-    const [searchParams] = useSearchParams();
     const onChangeHandler = (e) => {
         e.preventDefault(); // prevent reload of page
-        console.log("change", e.target.value);
-        const name = e.target.value;
         // context.changeSearchValue(name);
-        props.searchArtist(name);
-        props.setSearchValue(name);
+        props.searchArtist(e.target.value);
+        props.setSearchValue(e.target.value);
     };
 
-    const containerClass = searchParams ? "artistSearch" : null;
+    const containerClass = props.searchValue ? "artistSearch" : null;
 
     return (
         <div className={`searchContainer ${containerClass}`}>
@@ -24,12 +17,12 @@ export default function SearchBar(props) {
                 <input
                     className="searchItem"
                     type="search"
-                    value={searchParams.get("searchValue")}
+                    value={props.searchValue}
                     placeholder="Search for an artist..."
                     onChange={onChangeHandler}
                 ></input>
-                <button
-                    className="searchItem"
+                <i
+                    className="searchItem searchIcon"
                     style={{
                         position: "absolute",
                         right: "2.5%",
@@ -37,8 +30,8 @@ export default function SearchBar(props) {
                         opacity: "0.3",
                     }}
                 >
-                    <BiSearchAlt2 className="searchIcon" />
-                </button>
+                    <BiSearchAlt2 />
+                </i>
             </div>
         </div>
     );

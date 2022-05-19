@@ -5,17 +5,26 @@ import AuthContext from "../auth/auth-context";
 export default function HomePage() {
     const context = useContext(AuthContext);
     const location = useLocation();
+    console.log("I'm on Home Page");
 
-    useEffect(() => {
-        const locationHash = location.hash.split("&");
-        const token = locationHash[0].slice(14);
-        // const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-        if (token) context.changeToken(token);
-    }, [context, location]);
+    const locationHash = location.hash.split("&");
+    const token = locationHash[0].slice(14);
+    console.log(token);
 
-    return !context.token ? (
-        <Navigate to="/login" replace />
+    if (token) context.changeToken(token);
+    // useEffect(() => {
+    //     const locationHash = location.hash.split("&");
+    //     const token = locationHash[0].slice(14);
+    //     console.log(token);
+
+    //     if (token) context.changeToken(token);
+    //     console.log(context.token);
+    //     console.log(!context.token);
+    // }, [context, location]);
+
+    return !token ? (
+        <Navigate to="/login" replace={true} />
     ) : (
-        <Navigate to="/search" replace />
+        <Navigate to="/search" replace={true} />
     );
 }

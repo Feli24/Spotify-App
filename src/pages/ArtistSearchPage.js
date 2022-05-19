@@ -11,11 +11,9 @@ const SEARCH_URL = "https://api.spotify.com/v1/search";
 export default function ArtistSearchPage() {
     const [searchValue, setSearchValue] = useState("");
     const [artists, setArtists] = useState(null);
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const context = useContext(AuthContext);
-
-    console.log(searchValue);
 
     const searchArtist = useCallback(
         async (name) => {
@@ -40,16 +38,21 @@ export default function ArtistSearchPage() {
     );
 
     useEffect(() => {
-        if (searchParams) {
+        Array.from(document.querySelectorAll("input")).forEach(
+            (input) => (input.value = "")
+        );
+
+        if (searchParams.get("searchValue")) {
+            setSearchValue(searchParams.get("searchValue"));
             searchArtist(searchParams.get("searchValue"));
         }
-    }, [searchArtist, searchParams]);
+    }, [searchArtist, setSearchParams, searchParams]);
 
     // const changeQueryParams = () => {
     //     setSearchParams(`searchValue=${context.searchValue}`);
     // };
 
-    console.log("Im on ArtistSearchPage, here is my token: ", context.token);
+    // console.log("I'm on ArtistSearchPage, here is my token: ", context.token);
 
     return (
         <div className="artistSearchPageContainer">

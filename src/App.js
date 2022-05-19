@@ -1,5 +1,10 @@
 import { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -12,20 +17,39 @@ function App() {
     console.log(context.token);
     return (
         <div className="app-container">
-            <Header />
             <Router>
+                <Header />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route
                         path="/login"
                         element={
-                            context.token ? <ArtistSearchPage /> : <LoginPage />
+                            !context.token ? (
+                                <LoginPage />
+                            ) : (
+                                <Navigate to="/search" />
+                            )
                         }
                     />
-                    <Route path="/search" element={<ArtistSearchPage />} />
+                    <Route
+                        path="/search"
+                        element={
+                            context.token ? (
+                                <ArtistSearchPage />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
                     <Route
                         path="/albums/:name/:artistId"
-                        element={<AlbumPage />}
+                        element={
+                            context.token ? (
+                                <AlbumPage />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
                     />
                 </Routes>
             </Router>

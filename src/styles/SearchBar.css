@@ -28,7 +28,7 @@
     font-size: 1.75rem;
     background: transparent;
     border: none;
-    color: black;
+    color: #191414;
     text-decoration: none;
     padding: 0.75rem;
     opacity: 1;
@@ -39,9 +39,12 @@
 }
 
 .searchIcon {
-    padding-top: 9px;
-    cursor: pointer;
-    font-size: 3rem;
+    position: "absolute";
+    right: "2.5%";
+    background: "transparent";
+    opacity: "0.3";
+    padding-top: 15px;
+    font-size: 2.5rem;
 }
 
 /* clears the 'X' from Internet Explorer */
@@ -65,7 +68,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 ::placeholder {
-    color: black;
+    color: #191414;
     opacity: 0.5;
 }
 

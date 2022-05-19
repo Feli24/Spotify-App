@@ -14,7 +14,7 @@ export default function AlbumPage() {
     const token = context.token;
     const url = `https://api.spotify.com/v1/artists/${id}/albums`;
 
-    console.log("Im on AlbumPage, here is my token: ", context.token);
+    // console.log("I'm on AlbumPage, here is my token: ", context.token);
 
     // without useEffect, I have an infinite loop since setAlbums re-renders the component
     useEffect(() => {
