@@ -1,55 +1,44 @@
-import React, { useContext } from "react";
-import styles from "../styles/Artist.module.css";
+import React from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { Rating } from "@mui/material";
-import { Link } from "react-router-dom";
-import SearchContext from "../store/search-context";
+// import styles from "../styles/Artist.module.css";
 
-export default function ArtistCard({ info }) {
-    const context = useContext(SearchContext);
-    // const navigate = useNavigate();
-    const token = context.token;
-    const id = info.id;
-    const name = info.name;
-    const image = info.images;
+export default function ArtistCard(props) {
+    const [, setSearchParams] = useSearchParams();
+    const info = props.info;
     const followers = info.followers.total.toLocaleString("en-US");
     const popularity = (info.popularity * 5) / 100;
 
-    // const onClickHandler = (e) => {
-    //     e.preventDefault();
-    //     navigate(`/search?name=${name}#access_token=${token}`);
-    // };
+    const onClickHandler = (e) => {
+        console.log("Clicked artist");
+        setSearchParams(`searchValue=${props.searchValue}`);
+    };
 
     return (
-        <Link to={`/albums/${name}/${id}/${token}`}>
-            <div className={styles.artistContainer}>
-                <div className={styles.artistImg}>
-                    {image.length !== 0 ? (
-                        <img src={image[0].url} alt="" />
+        <Link to={`/albums/${info.name}/${info.id}`}>
+            <div className="artistContainer" onClick={onClickHandler}>
+                <div className="artistImg">
+                    {info.images.length !== 0 ? (
+                        <img src={info.images[0].url} alt="" />
                     ) : (
                         <div>No Image</div>
                     )}
                 </div>
-                <div className={styles.artistInfo}>
-                    <div className={styles.artistNameFollowersContainer}>
-                        <div
-                            className={`${styles.artistName} ${styles.artistItem}`}
-                        >
-                            {name}
+                <div className="artistInfo">
+                    <div className="artistNameFollowersContainer">
+                        <div className={"artistName artistItem"}>
+                            {info.name}
                         </div>
-                        <div
-                            className={`${styles.artistFollowers} ${styles.artistItem}`}
-                        >
+                        <div className={"artistFollowers artistItem"}>
                             {followers} followers
                         </div>
                     </div>
-                    <div
-                        className={`${styles.artistPopularity} ${styles.artistItem}`}
-                    >
-                        {/* <i className={styles.star} />
-                        <i className={styles.star} />
-                        <i className={styles.star} />
-                        <i className={styles.star} />
-                        <i className={styles.star} /> */}
+                    <div className={"artistPopularity artistItem"}>
+                        {/* <i className=star} />
+                        <i className=star} />
+                        <i className=star} />
+                        <i className=star} />
+                        <i className=star} /> */}
                         <Rating
                             name="read-only"
                             value={popularity}

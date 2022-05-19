@@ -13,19 +13,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25%;
-    border: 2px solid #d3d3d3;
+    width: 30%;
+    border: 2px solid black;
     border-radius: 0.5rem;
     padding: 0.5rem;
-    background-color: #ffffff;
+    background-color: white;
 }
 
 .loginContainer:hover {
-    background-color: grey;
+    border: 2px solid white;
+    background-color: #1db954;
+    color: #ffffff;
 }
 
 .loginItem {
-    color: black;
     text-decoration: none;
     padding: 0.75rem;
+}
+
+.loginLogo {
+    position: absolute;
+    right: 0;
+    font-size: 4rem;
 }

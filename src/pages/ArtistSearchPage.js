@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Search from "../components/SearchBar";
 import Artists from "../components/ArtistCard";
-import styles from "../styles/Artist.module.css";
-import SearchContext from "../store/search-context";
+// import styles from "../styles/Artist.module.css";
+import AuthContext from "../auth/auth-context";
 
 const SEARCH_URL = "https://api.spotify.com/v1/search";
 
 export default function ArtistSearchPage() {
+    const [searchValue, setSearchValue] = useState("");
     const [artists, setArtists] = useState(null);
-    const location = useLocation();
-    const context = useContext(SearchContext);
+    const [searchParams] = useSearchParams();
+
+    const context = useContext(AuthContext);
+
+    console.log(searchValue);
 
     const searchArtist = useCallback(
         async (name) => {
@@ -36,22 +40,32 @@ export default function ArtistSearchPage() {
     );
 
     useEffect(() => {
-        const locationHash = location.hash.split("&");
-        const token = locationHash[0].slice(14);
-        // const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-        context.changeToken(token);
-        if (context.searchValue !== "") {
-            searchArtist(context.searchValue);
+        if (searchParams) {
+            searchArtist(searchParams.get("searchValue"));
         }
-    }, [context, location.hash, searchArtist]);
+    }, [searchArtist, searchParams]);
+
+    // const changeQueryParams = () => {
+    //     setSearchParams(`searchValue=${context.searchValue}`);
+    // };
+
+    console.log("Im on ArtistSearchPage, here is my token: ", context.token);
 
     return (
-        <div className={styles.artistSearchPageContainer}>
-            <Search searchArtist={searchArtist} />
+        <div className="artistSearchPageContainer">
+            <Search
+                searchArtist={searchArtist}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+            />
             {artists ? (
-                <div className={styles.artistsContainer}>
+                <div className="artistsContainer">
                     {artists.map((artist, i) => (
-                        <Artists info={artist} token={context.token} key={i} />
+                        <Artists
+                            info={artist}
+                            key={i}
+                            searchValue={searchValue}
+                        />
                     ))}
                 </div>
             ) : null}

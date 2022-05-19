@@ -1,0 +1,79 @@
+.albumContainer {
+    /* height: 25rem; */
+    display: flex;
+    flex-direction: column;
+    border: 2px solid grey;
+    border-radius: 4px;
+    transition: transform 0.5s ease;
+    background-color: #ffffff;
+}
+
+.albumImg {
+    width: 100%;
+    height: 15rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.albumInfo {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 2px solid grey;
+    padding: 1rem;
+}
+
+.albumNameArtistsContainer {
+}
+
+.albumName {
+    font-size: 20px;
+}
+
+.albumArtists {
+    color: #808080;
+    padding-top: 0.4rem;
+    /* font-size: 15px; */
+}
+
+.albumDateTracksContainer {
+    /* text-align: center; */
+    display: flex;
+    justify-content: space-between;
+    color: #808080;
+    padding-top: 1.5rem;
+}
+
+.albumItem {
+    /* width: 100%; */
+}
+
+.albumUrl {
+    /* border-top: 2px solid grey; */
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.albumUrl > a {
+    /* background-color: #191414; */
+    /* color: white; */
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.albumUrl > a:hover {
+    border: 2px solid white;
+    color: white;
+    background-color: #1db954;
+    cursor: pointer;
+}
+
+.albumUrlLogo {
+    /* background-color: #24f; */
+    padding-left: 0.2rem;
+}

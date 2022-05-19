@@ -1,3 +1,13 @@
+@import "./Header";
+@import "./LoginPage";
+@import "./ArtistSearchPage";
+@import "./AlbumPage";
+
+@font-face {
+    font-family: "Argentum";
+    src: url("../../public/fonts/argentum-sans.regular.ttf");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,7 +17,7 @@ body,
 #root {
     background-color: #191414;
     height: 100%;
-    font-family: "Helvetica";
+    font-family: "Argentum", sans-serif;
     margin: 0;
     padding: 0;
 }

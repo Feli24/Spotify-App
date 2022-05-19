@@ -1,45 +1,31 @@
-.artistSearchPageContainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-grow: 1;
-    /* background-color: aquamarine; */
-}
-
-.artistsContainer {
-    width: 100%;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, 300px);
-    grid-gap: 40px;
-    padding: 3rem;
-}
-
 .artistContainer {
     height: 25rem;
     display: flex;
     flex-direction: column;
     border: 2px solid grey;
     border-radius: 4px;
-    transition: transform 0.5s ease;
+    transition: 0.3s ease;
     background-color: #ffffff;
+    color: grey;
 }
 
 .artistContainer:hover {
-    background-color: rgb(100, 190, 132);
+    background-color: #1db954;
     transform: scale(1.1);
     cursor: pointer;
+    color: #ffffff;
 }
 
 .artistImg {
-    width: 100%;
     height: 15rem;
     text-align: center;
     overflow: hidden;
 }
 
 img {
+    object-fit: cover;
     width: 100%;
+    height: 100%;
 }
 
 .artistInfo {
@@ -48,7 +34,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-top: 2px solid black;
+    border-top: 2px solid #808080;
     padding: 1rem;
 }
 
@@ -64,11 +50,11 @@ img {
 }
 
 .artistName {
+    color: black;
     font-size: 20px;
 }
 
 .artistFollowers {
-    color: #808080;
     padding-top: 0.4rem;
     font-size: 15px;
 }
@@ -82,7 +68,7 @@ a {
     color: black;
 }
 
-.star {
+/* .star {
     position: relative;
 
     display: inline-block;
@@ -97,7 +83,7 @@ a {
     border-bottom: 0.7em solid #fc0;
     border-left: 0.3em solid transparent;
 
-    /* Controlls the size of the stars. */
+    // Controlls the size of the stars. 
     font-size: 12px;
 }
 
@@ -122,4 +108,4 @@ a {
 
 .star:after {
     transform: rotate(35deg);
-}
+} */

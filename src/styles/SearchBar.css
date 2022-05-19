@@ -66,5 +66,9 @@ input[type="search"]::-webkit-search-results-decoration {
 
 ::placeholder {
     color: black;
-    opacity: 0.75;
+    opacity: 0.5;
+}
+
+input:focus::placeholder {
+    color: transparent;
 }

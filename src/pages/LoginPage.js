@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import styles from "../styles/Login.module.css";
+// import styles from "../styles/Login.module.css";
 import { FaSpotify } from "react-icons/fa";
-import SearchContext from "../store/search-context";
-import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../auth/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const AUTH_URL =
-    "http://accounts.spotify.com/authorize?client_id=93c91ab791eb4ef2b6374e1aed0766be&response_type=token&redirect_uri=http://localhost:3000/search";
+    "http://accounts.spotify.com/authorize?client_id=93c91ab791eb4ef2b6374e1aed0766be&response_type=token&redirect_uri=https://localhost:3000";
 
 export default function LoginPage() {
-    const context = useContext(SearchContext);
+    const context = useContext(AuthContext);
     const navigate = useNavigate();
-    console.log(context);
+    console.log("Im on LoginPage, here is my token: ", context.token);
 
     if (context.token !== "") {
         console.log("Here");
@@ -18,23 +18,11 @@ export default function LoginPage() {
     } else {
         console.log("Here2");
         return (
-            <div className={styles.loginPage}>
-                {/* <Link to={AUTH_URL}> */}
-                <div className={styles.loginContainer}>
-                    <a href={AUTH_URL} className={styles.loginItem}>
-                        Login
-                    </a>
-                    <FaSpotify
-                        className={styles.loginItem}
-                        style={{
-                            color: "#1DB954",
-                            position: "absolute",
-                            right: "0",
-                            fontSize: "4rem",
-                        }}
-                    />
-                </div>
-                {/* </Link> */}
+            <div className="loginPage">
+                <a href={AUTH_URL} className="loginContainer">
+                    <div className="loginName loginItem">Login</div>
+                    <FaSpotify className="loginLogo loginItem" />
+                </a>
             </div>
         );
     }

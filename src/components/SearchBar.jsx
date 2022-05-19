@@ -1,33 +1,35 @@
-import React, { useContext } from "react";
-import styles from "../styles/Search.module.css";
+// import React, { useContext } from "react";
+import { useSearchParams } from "react-router-dom";
+// import styles from "../styles/Search.module.css";
 import { BiSearchAlt2 } from "react-icons/bi";
-import SearchContext from "../store/search-context";
+// import SearchContext from "../store/search-context";
 
 export default function SearchBar(props) {
-    const context = useContext(SearchContext);
-
+    // const context = useContext(SearchContext);
+    const [searchParams] = useSearchParams();
     const onChangeHandler = (e) => {
         e.preventDefault(); // prevent reload of page
+        console.log("change", e.target.value);
         const name = e.target.value;
-        context.changeSearchValue(name);
+        // context.changeSearchValue(name);
         props.searchArtist(name);
+        props.setSearchValue(name);
     };
 
-    const containerClass = context.searchValue ? styles.artistSearch : null;
+    const containerClass = searchParams ? "artistSearch" : null;
 
     return (
-        <div className={`${styles.searchContainer} ${containerClass}`}>
-            <form className={styles.searchForm}>
+        <div className={`searchContainer ${containerClass}`}>
+            <div className="searchForm">
                 <input
-                    className={styles.searchItem}
+                    className="searchItem"
                     type="search"
-                    value={context.searchValue}
+                    value={searchParams.get("searchValue")}
                     placeholder="Search for an artist..."
                     onChange={onChangeHandler}
                 ></input>
                 <button
-                    className={styles.searchItem}
-                    type="submit"
+                    className="searchItem"
                     style={{
                         position: "absolute",
                         right: "2.5%",
@@ -35,9 +37,9 @@ export default function SearchBar(props) {
                         opacity: "0.3",
                     }}
                 >
-                    <BiSearchAlt2 className={styles.searchIcon} />
+                    <BiSearchAlt2 className="searchIcon" />
                 </button>
-            </form>
+            </div>
         </div>
     );
 }

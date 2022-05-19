@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "../styles/Album.module.css";
+import { FaSpotify } from "react-icons/fa";
+// import styles from "../styles/Album.module.css";
 
 export default function AlbumCard({ info }) {
     const image = info.images;
@@ -9,44 +10,36 @@ export default function AlbumCard({ info }) {
     const tracks = info.total_tracks;
     const external_url = info.external_urls.spotify;
     return (
-        <div className={styles.albumContainer}>
-            <div className={styles.albumImg}>
+        <div className="albumContainer">
+            <div className="albumImg">
                 {image.length !== 0 ? (
                     <img src={image[0].url} alt="" />
                 ) : (
                     <div>No Image</div>
                 )}
             </div>
-            <div className={styles.albumInfo}>
-                <div className={styles.albumNameArtistsContainer}>
-                    <div className={`${styles.albumName} ${styles.albumItem}`}>
-                        {name}
-                    </div>
-                    <div
-                        className={`${styles.albumArtists} ${styles.albumItem}`}
-                    >
+            <div className="albumInfo">
+                <div className="albumNameArtistsContainer">
+                    <div className="albumName albumItem">{name}</div>
+                    <div className="albumArtists albumItem">
                         {artists.join(", ")}
                     </div>
                 </div>
-                <div className={styles.albumDateTracksContainer}>
-                    <div className={`${styles.albumDate} ${styles.albumItem}`}>
-                        {date}
-                    </div>
-                    <div
-                        className={`${styles.albumTracks} ${styles.albumItem}`}
-                    >
-                        {tracks}
-                    </div>
+                <div className="albumDateTracksContainer">
+                    <div className="albumDate albumItem">{date}</div>
+                    <div className="albumTracks albumItem">{tracks} tracks</div>
                 </div>
             </div>
-            <a
-                href={external_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.albumUrl} ${styles.albumItem}`}
-            >
-                Preview on Spotify
-            </a>
+            <div className="albumUrl albumItem">
+                <a
+                    href={external_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Preview on Spotify
+                    <FaSpotify className="albumUrlLogo" />
+                </a>
+            </div>
         </div>
     );
 }
