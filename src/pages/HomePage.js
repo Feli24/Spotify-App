@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router";
 import AuthContext from "../auth/auth-context";
 
@@ -9,9 +9,15 @@ export default function HomePage() {
 
     const locationHash = location.hash.split("&");
     const token = locationHash[0].slice(14);
+    console.log(locationHash);
     console.log(token);
+    console.log(typeof token);
+    console.group(token);
 
-    if (token) context.changeToken(token);
+    if (token) {
+        context.changeToken(token);
+        console.log("Changing token");
+    }
     // useEffect(() => {
     //     const locationHash = location.hash.split("&");
     //     const token = locationHash[0].slice(14);

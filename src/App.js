@@ -21,34 +21,21 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route
-                        path="/login"
-                        element={
-                            !context.token ? (
-                                <LoginPage />
-                            ) : (
-                                <Navigate to="/search" />
-                            )
-                        }
-                    />
+                    <Route path="/login" element={<LoginPage />} />
                     <Route
                         path="/search"
                         element={
-                            context.token ? (
+                            <ProtectedRoute token={context.token}>
                                 <ArtistSearchPage />
-                            ) : (
-                                <Navigate to="/login" />
-                            )
+                            </ProtectedRoute>
                         }
                     />
                     <Route
                         path="/albums/:name/:artistId"
                         element={
-                            context.token ? (
+                            <ProtectedRoute token={context.token}>
                                 <AlbumPage />
-                            ) : (
-                                <Navigate to="/login" />
-                            )
+                            </ProtectedRoute>
                         }
                     />
                 </Routes>
@@ -56,5 +43,13 @@ function App() {
         </div>
     );
 }
+
+const ProtectedRoute = ({ token, children }) => {
+    if (!token) {
+        return <Navigate to="/" replace />;
+    }
+
+    return children;
+};
 
 export default App;

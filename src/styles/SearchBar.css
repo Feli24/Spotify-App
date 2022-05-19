@@ -44,7 +44,7 @@
     background: "transparent";
     opacity: "0.3";
     padding-top: 15px;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 /* clears the 'X' from Internet Explorer */
@@ -74,4 +74,26 @@ input[type="search"]::-webkit-search-results-decoration {
 
 input:focus::placeholder {
     color: transparent;
+}
+
+@media (max-width: 950px) {
+    .searchItem {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 768px) {
+    .searchForm {
+        width: 50%;
+    }
+    .searchItem {
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 600px) {
+    .searchForm {
+        width: 60%;
+    }
+    .searchItem {
+        font-size: 1rem;
+    }
 }

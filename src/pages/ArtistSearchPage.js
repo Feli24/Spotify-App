@@ -43,6 +43,7 @@ export default function ArtistSearchPage() {
         );
 
         if (searchParams.get("searchValue")) {
+            console.log("IM HERE");
             setSearchValue(searchParams.get("searchValue"));
             searchArtist(searchParams.get("searchValue"));
         }

@@ -14,14 +14,14 @@
     justify-content: center;
     align-items: center;
     width: 30%;
-    border: 2px solid black;
+    border: 2px solid #020202;
     border-radius: 0.5rem;
     padding: 0.5rem;
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .loginContainer:hover {
-    border: 2px solid white;
+    border: 2px solid #ffffff;
     background-color: #1db954;
     color: #ffffff;
 }
@@ -32,6 +32,7 @@
 }
 
 .loginLogo {
+    color: #191414;
     position: absolute;
     right: 0;
     font-size: 4rem;
