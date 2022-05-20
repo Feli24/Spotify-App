@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FaSpotify } from "react-icons/fa";
 import { useAuth } from "../auth/auth-context";
 // import styles from "../styles/Header.module.css";
@@ -16,9 +16,11 @@ export default function Header() {
 
     return (
         <nav className="header">
-            <FaSpotify className="headerLogo" />
-            <h1>Spotify Artist Search</h1>
-            <div className="headerLogoutLogoContainer">
+            <Link to="/" className="headerLogoTitleContainer">
+                <FaSpotify className="headerLogo" />
+                <h1>Spotify Artist Search</h1>
+            </Link>
+            <div className="headerLogoutContainer">
                 {location.pathname !== "/login" ? (
                     <button
                         className="headerLogoutButton"
