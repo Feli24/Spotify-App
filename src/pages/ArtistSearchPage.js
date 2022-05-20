@@ -1,59 +1,53 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Search from "../components/SearchBar";
 import Artists from "../components/ArtistCard";
-// import styles from "../styles/Artist.module.css";
-import AuthContext from "../auth/auth-context";
+import { useAuth } from "../auth/auth-context";
 
 const SEARCH_URL = "https://api.spotify.com/v1/search";
 
 export default function ArtistSearchPage() {
     const [searchValue, setSearchValue] = useState("");
     const [artists, setArtists] = useState(null);
+    const { tokenValue } = useAuth("");
     const [searchParams, setSearchParams] = useSearchParams();
-
-    const context = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const searchArtist = useCallback(
         async (name) => {
-            if (name.length > 0) {
-                const { data } = await axios.get(SEARCH_URL, {
-                    headers: {
-                        Authorization: "Bearer " + context.token,
-                    },
-                    params: {
-                        q: name,
-                        type: "artist",
-                    },
-                });
-                setArtists(data.artists.items);
-            } else {
-                setArtists(null);
+            if (!tokenValue) {
+                navigate("/");
             }
-        },
-        [context.token]
 
-        // navigate(`/search?name=${name}#${token}`)
+            if (name.length === 0) {
+                setArtists(null);
+                return;
+            }
+
+            const { data } = await axios.get(SEARCH_URL, {
+                headers: {
+                    Authorization: "Bearer " + tokenValue,
+                },
+                params: {
+                    q: name,
+                    type: "artist",
+                },
+            });
+            setArtists(data.artists.items);
+        },
+        [tokenValue, navigate]
     );
 
     useEffect(() => {
-        Array.from(document.querySelectorAll("input")).forEach(
-            (input) => (input.value = "")
-        );
-
         if (searchParams.get("searchValue")) {
-            console.log("IM HERE");
             setSearchValue(searchParams.get("searchValue"));
             searchArtist(searchParams.get("searchValue"));
+            return;
         }
+        setSearchValue("");
+        setArtists(null);
     }, [searchArtist, setSearchParams, searchParams]);
-
-    // const changeQueryParams = () => {
-    //     setSearchParams(`searchValue=${context.searchValue}`);
-    // };
-
-    // console.log("I'm on ArtistSearchPage, here is my token: ", context.token);
 
     return (
         <div className="artistSearchPageContainer">

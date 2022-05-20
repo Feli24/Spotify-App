@@ -4,7 +4,6 @@ import { BiSearchAlt2 } from "react-icons/bi";
 export default function SearchBar(props) {
     const onChangeHandler = (e) => {
         e.preventDefault(); // prevent reload of page
-        // context.changeSearchValue(name);
         props.searchArtist(e.target.value);
         props.setSearchValue(e.target.value);
     };

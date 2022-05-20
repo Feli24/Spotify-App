@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Rating } from "@mui/material";
-// import styles from "../styles/Artist.module.css";
 
 export default function ArtistCard({ info, searchValue }) {
     const [, setSearchParams] = useSearchParams();
-
     const followers = info.followers.total.toLocaleString("en-US");
     const popularity = (info.popularity * 5) / 100;
 

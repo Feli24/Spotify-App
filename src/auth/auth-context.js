@@ -1,30 +1,32 @@
-import { React, createContext, useState } from "react";
+import { React, createContext, useState, useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
 
 const context_init = {
     // searchValue: "",
-    token: "",
     // changeSearchValue: (searchValue) => {},
-    changeToken: (token) => {},
+    token: "",
+    setToken: (token) => {},
 };
 
 const AuthContext = createContext(context_init);
 
-export function AuthContextProvider(props) {
+export function AuthContextProvider({ children }) {
     // const [searchValue, setSearchValue] = useState("");
     const [tokenValue, setTokenValue] = useState("");
 
-    const context = {
-        // searchValue: searchValue,
-        token: tokenValue,
-        // changeSearchValue: setSearchValue,
-        changeToken: setTokenValue,
-    };
+    // const token = useLocation().hash.split("&")[0].slice(14);
+    // useEffect(() => {
+    //     if (token !== "") {
+    //         console.log("Token in Auth Context -> ", token);
+    //         setTokenValue(token);
+    //     }
+    // }, [token]);
 
     return (
-        <AuthContext.Provider value={context}>
-            {props.children}
+        <AuthContext.Provider value={{ tokenValue, setTokenValue }}>
+            {children}
         </AuthContext.Provider>
     );
 }
 
-export default AuthContext;
+export const useAuth = () => useContext(AuthContext);

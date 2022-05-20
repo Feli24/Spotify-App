@@ -1,21 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaSpotify } from "react-icons/fa";
-import AuthContext from "../auth/auth-context";
+import { useAuth } from "../auth/auth-context";
 // import styles from "../styles/Header.module.css";
 
 export default function Header() {
+    const { setTokenValue } = useAuth("");
     const location = useLocation();
     const navigate = useNavigate();
-    const context = useContext(AuthContext);
 
     const handleLogout = () => {
-        context.changeToken("");
+        setTokenValue("");
         navigate("/login");
     };
 
     return (
         <nav className="header">
+            <FaSpotify className="headerLogo" />
             <h1>Spotify Artist Search</h1>
             <div className="headerLogoutLogoContainer">
                 {location.pathname !== "/login" ? (
@@ -26,7 +27,6 @@ export default function Header() {
                         Logout
                     </button>
                 ) : null}
-                <FaSpotify className="headerLogo" />
             </div>
         </nav>
     );

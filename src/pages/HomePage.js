@@ -1,36 +1,17 @@
-import React, { useContext } from "react";
-import { Navigate, useLocation } from "react-router";
-import AuthContext from "../auth/auth-context";
+import React from "react";
+import { Navigate, useLocation, useNavigate } from "react-router";
+import { useAuth } from "../auth/auth-context";
 
 export default function HomePage() {
-    const context = useContext(AuthContext);
+    const { setTokenValue } = useAuth("");
+    const navigate = useNavigate();
     const location = useLocation();
-    console.log("I'm on Home Page");
 
-    const locationHash = location.hash.split("&");
-    const token = locationHash[0].slice(14);
-    console.log(locationHash);
-    console.log(token);
-    console.log(typeof token);
-    console.group(token);
-
+    const token = location.hash.split("&")[0].slice(14);
     if (token) {
-        context.changeToken(token);
-        console.log("Changing token");
+        setTokenValue(token);
+        navigate("/search", { replace: true });
     }
-    // useEffect(() => {
-    //     const locationHash = location.hash.split("&");
-    //     const token = locationHash[0].slice(14);
-    //     console.log(token);
 
-    //     if (token) context.changeToken(token);
-    //     console.log(context.token);
-    //     console.log(!context.token);
-    // }, [context, location]);
-
-    return !token ? (
-        <Navigate to="/login" replace={true} />
-    ) : (
-        <Navigate to="/search" replace={true} />
-    );
+    return !token ? <Navigate to="/login" /> : <Navigate to="/search" />;
 }
